@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- requires jquery 1.10.2+ -->
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+  <!-- bootstrap optional  -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="jquery-single-form-validations.css">
+  <script src="jquery-single-form-validations.js"></script>
+  <title>Document</title>
+  <style media="screen">
+    #form-submit {
+      width: 50% !important;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="well" class="input-control" id="form-submit">
+    <form action="" method="post">
+      <input type="text" class="form-control" data-type="email" id="email" required="" placeholder="example@mail.com">
+      <div class="errors"></div>
+      <br>
+      <input type="text" class="form-control" data-type="password" id="password" required="" placeholder="Contraseña">
+      <div class="errors"></div>
+      <br>
+      <input type="text" class="form-control" data-type="password" data-match="#password" required="" placeholder="Confirmar contraseña">
+      <div class="errors"></div>
+      <br>
+      <input type="text" class="form-control" data-type="phone" id="phone" required="" placeholder="Phone">
+      <div class="errors"></div>
+      <br>
+      <input type="text" class="form-control" data-type="phone" id="Nss" required="" placeholder="NSS">
+      <div class="errors"></div>
+      <br>
+      <br>
+      <br>
+      <button type="button" class="btn btn-success" id="button-send">Send</button>
+    </form>
+  </div>
+  <script>
+  $(document).ready(function() {
+    $("#email").setEmailFormat({
+      close: true,
+      message: 'Esta dirección de correo no es válida'
+    });
+
+    $("#phone").setPhoneFormat({
+      close: true,
+      message: 'email invalid please type a valid email'
+    });
+
+    $("#button-send").click(function() {
+      $("#form-submit").validate();
+    });
+
+    $("#Nss").justNumbers(10);
+  });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+#close {
+    float:right;
+    display:inline-block;
+    padding: 0px 5px;
+    background:#ccc;
+    margin-right: -10px;
+    cursor: pointer;
+    margin-top: -10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    behavior: url(PIE.htc)
+}
+#globo-warning{
+  width: auto;
+  height: auto;
+  padding: 6px;
+  border-radius: 5px;
+  z-index: 1;
+  box-shadow: 0 2px 5px #555;
+  background-color: rgb(252, 132, 34);
+  position: relative;
+  color: #FFF;
+  margin-top: 10px;
+  clear:both;
+  float: left;
+  font-size: 10px;
+  font-style: oblique;
+  font-weight: bold;
+  }
+  #globo-warning:before{
+      content: "";
+      width: 0;
+      position: absolute;
+      border-style: solid;
+      border-width: 0 7px 10px 7px;
+      border-color: #EEE transparent rgb(252, 132, 34) transparent;
+      top: -10px;
+  }
+  #globo-danger{
+      width: auto;
+      height: auto;
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px #555;
+      background-color: rgb(182, 92, 94);
+      position: relative;
+      z-index: 1;
+      color: #FFF;
+      clear:both;
+      float: left;
+      margin-top: 9px;
+      font-size: 10px;
+      font-style: oblique;
+      font-weight: bold;
+  }
+  #globo-danger:before{
+      content: "";
+      width: 0;
+      position: absolute;
+      border-style: solid;
+      border-width: 0 7px 10px 7px;
+      border-color: #EEE transparent rgb(182, 92, 94) transparent;
+      top: -10px;
+  }
+
+  .error {
+  border-color: rgb(182, 92, 94) !important;
+}
+
+.errors {
+  position: absolute;
+}
