@@ -42,7 +42,10 @@
       <input type="text" class="form-control" data-type="phone" id="phone" required="" placeholder="Phone">
       <div class="errors"></div>
       <br>
-      <input type="text" class="form-control" data-type="phone" id="Nss" required="" placeholder="NSS">
+      <input type="text" class="form-control" data-type="" id="Nss" required="" placeholder="NSS">
+      <div class="errors"></div>
+      <br>
+      <input type="text" class="form-control" data-type="date" id="datetime" required="" placeholder="Date">
       <div class="errors"></div>
       <br>
       <br>
@@ -63,8 +66,12 @@
     });
 
     $("#button-send").click(function() {
-      $("#form-submit").validate();
+      $("#form-submit").validate({
+        close: true
+      });
     });
+
+    $("#datetime").datepicker();
 
     $("#Nss").justNumbers(10);
   });

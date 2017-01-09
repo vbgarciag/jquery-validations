@@ -14,7 +14,7 @@
 #globo-warning{
   width: auto;
   height: auto;
-  padding: 6px;
+  padding: 10px;
   border-radius: 5px;
   z-index: 1;
   box-shadow: 0 2px 5px #555;
@@ -24,7 +24,7 @@
   margin-top: 10px;
   clear:both;
   float: left;
-  font-size: 10px;
+  font-size: 13px;
   font-style: oblique;
   font-weight: bold;
   }
@@ -40,7 +40,7 @@
   #globo-danger{
       width: auto;
       height: auto;
-      padding: 5px;
+      padding: 10px;
       border-radius: 5px;
       box-shadow: 0 2px 5px #555;
       background-color: rgb(182, 92, 94);
@@ -50,7 +50,7 @@
       clear:both;
       float: left;
       margin-top: 9px;
-      font-size: 10px;
+      font-size: 13px;
       font-style: oblique;
       font-weight: bold;
   }

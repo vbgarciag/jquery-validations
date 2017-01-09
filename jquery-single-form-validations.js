@@ -11,7 +11,7 @@ $(document).ready(function() {
 var txt_error_password_strength = "La constraseña debe contener almenos 8 caracteres";
 var txt_error_credit_card = "Credit card number must be between 13 and 16 numbers";
 var txt_error_email_invalid = "Dirección de correo no válida";
-var txt_empty = "Este campo es requerido";
+var txt_empty = " Por favor rellene este campo";
 var txt_error_phone_invalid = "Numero de celular invalido";
 var txt_error_did_not_match = "Esta direccion de correo no conicide con ";
 var txt_error_datetime_invalid = "Formato de fecha invalida. Ejemplo: mm/dd/yyyy";
@@ -50,10 +50,11 @@ $.fn.hasAttr = function(name) {
     return this.attr(name) !== undefined;
 };
 
-$.fn.validate = function(options) {
+$.fn.validate = function(options = null) {
     // language's variables
-
-
+    if(options != null) {
+      div_close = options.close == true ? div_close : '';
+    }
 
 
 var f = 0;
@@ -75,6 +76,8 @@ $(this).find('input').each(function() {
         error_text = txt_empty;
         f++;
         has_error = true;
+        $(this).focus();
+        return false;
 
     }
     else
@@ -106,12 +109,14 @@ $(this).find('input').each(function() {
             var value = input.val();
             if(value.length <= 8 || !/[A-Z]/.test(value) || !/[0-9]/.test(value))
             {
-                var error2 = error_password_strength.clone();
-                errors.push(error2);
+                var error2 = div_part1+div_close+txt_error_password_strength+div_part2;
+                //errors.push(error2);
                 $(input).next('.errors').html(error2);
                 error_text = txt_error_password_strength;
                 f++;
                 has_error = true;
+                $(this).addClass('error').focus();
+                return false;
             }
             else
             {
@@ -135,6 +140,8 @@ $(this).find('input').each(function() {
                         error_text = txt_error_fields_not_match;
                         f++;
                         has_error = true;
+                        $(this).focus();
+                        return false;
                     }
 
                 }
@@ -159,6 +166,8 @@ $(this).find('input').each(function() {
                 error_text = txt_error_email_invalid;
                 f++;
                 has_error = true;
+                $(this).focus();
+                return false;
             }
             else
             {
@@ -170,6 +179,8 @@ $(this).find('input').each(function() {
                         error_email_invalid.remove();
                         $(input).removeClass('error');
                         $(input.data('match')).removeClass('error');
+                        $(this).focus();
+                        return false;
 
                     }
                     else
@@ -208,6 +219,8 @@ $(this).find('input').each(function() {
                 error_text = txt_error_phone_invalid;
                 f++;
                 has_error = true;
+                $(this).focus();
+                return false;
             }
             else
             {
@@ -419,14 +432,14 @@ $(this).find('input').each(function() {
 
     }//End of else required
 
-    if(has_error){
-        $(input).addClass('error');
-        $(input).attr('title', error_text);
-    }
-    else{
-        $(input).removeClass('error');
-        $(input).attr('title', '');
-    }
+    // if(has_error){
+    //     $(input).addClass('error');
+    //     $(input).attr('title', error_text);
+    // }
+    // else{
+    //     $(input).removeClass('error');
+    //     $(input).attr('title', '');
+    // }
 })
 
 if(f > 0)
@@ -628,7 +641,7 @@ $(this).on('change, blur',function(key) {
     }
 
     var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    var value = $(this).val();
+    var value = $(this).val().trim();
     if(value == ""){
       $(this).next('.errors').html('');
       $(this).removeClass('error');
