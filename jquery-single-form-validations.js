@@ -50,7 +50,7 @@ $.fn.hasAttr = function(name) {
     return this.attr(name) !== undefined;
 };
 
-$.fn.validate = function(options = null) {
+$.fn.validate = function(options = null, callback) {
     // language's variables
     if(options != null) {
       div_close = options.close == true ? div_close : '';
@@ -107,7 +107,7 @@ $(this).find('input').each(function() {
         else if(input.data('type') == 'password')
         {
             var value = input.val();
-            if(value.length <= 8 || !/[A-Z]/.test(value) || !/[0-9]/.test(value))
+            if(value.length <= 8 || !/[0-9]/.test(value))
             {
                 var error2 = div_part1+div_close+txt_error_password_strength+div_part2;
                 //errors.push(error2);
@@ -238,7 +238,6 @@ $(this).find('input').each(function() {
         {
             var regex = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
             var value = input.val();
-            alert(value)
 
             if(! regex.test(value))
             {
@@ -448,7 +447,30 @@ if(f > 0)
 }
 else
 {
-    $(this).find('form').submit();
+    if(options.ajax == true) {
+      $(this).find('form').ajaxSubmit({
+        error: function(xhr) {
+          callback.call(xhr);
+        },
+        success: function(response) {
+          if(response.status === 'OK')
+          {
+            console.log(response);
+          }
+          else
+          {
+            console.log(response);
+          }
+          callback.call(response);
+        }
+
+      });
+      return false;
+      //Very important line, it disable the page refresh.
+      event.preventDefault();
+    }else {
+      $(this).find('form').submit();
+    }
 }
 
 };

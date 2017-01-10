@@ -18,7 +18,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="jquery-single-form-validations.css">
+  <link rel="stylesheet" href="datepicker/datepicker.css">
   <script src="jquery-single-form-validations.js"></script>
+  <script src="datepicker/bootstrap-datepicker.js"></script>
+  <script src="jquery_submit.js"></script>
   <title>Document</title>
   <style media="screen">
     #form-submit {
@@ -29,13 +32,13 @@
 </head>
 <body>
   <div class="well" class="input-control" id="form-submit">
-    <form action="" method="post">
+    <form action="http://construobras.app/api/auth" method="post">
       <input type="text" class="form-control" data-type="email" id="email" required="" placeholder="example@mail.com">
       <div class="errors"></div>
       <br>
       <input type="text" class="form-control" data-type="password" id="password" required="" placeholder="Contraseña">
       <div class="errors"></div>
-      <br>
+      <!-- <br>
       <input type="text" class="form-control" data-type="password" data-match="#password" required="" placeholder="Confirmar contraseña">
       <div class="errors"></div>
       <br>
@@ -45,8 +48,8 @@
       <input type="text" class="form-control" data-type="" id="Nss" required="" placeholder="NSS">
       <div class="errors"></div>
       <br>
-      <input type="text" class="form-control" data-type="date" id="datetime" required="" placeholder="Date">
-      <div class="errors"></div>
+      <input type="text" class="form-control" data-type="date" id="datetime" data-date-format="dd/mm/yyyy" required="" placeholder="Date">
+      <div class="errors"></div> -->
       <br>
       <br>
       <br>
@@ -62,7 +65,7 @@
 
     $("#phone").setPhoneFormat({
       close: true,
-      message: 'email invalid please type a valid email'
+      message: 'numero de celular invlido'
     });
 
     $("#button-send").click(function() {
@@ -73,7 +76,7 @@
 
     $("#datetime").datepicker();
 
-    $("#Nss").justNumbers(10);
+    $("#Nss").justNumbers(11);
   });
 
   </script>
